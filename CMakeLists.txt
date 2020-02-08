@@ -344,7 +344,7 @@ if (SPIRV_CROSS_SHARED)
 		install(FILES ${CMAKE_CURRENT_BINARY_DIR}/spirv-cross-c-shared.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
 	endif()
 
-	spirv_cross_add_library(spirv-cross-c-shared spirv_cross_c_shared SHARED
+	spirv_cross_add_library(spirv-cross-c-shared spirv_cross_c_shared STATIC
 			${spirv-cross-core-sources}
 			${spirv-cross-c-sources})
 
@@ -399,12 +399,6 @@ if (SPIRV_CROSS_SHARED)
 			set_target_properties(spirv-cross-c-shared PROPERTIES LINK_FLAGS "${spirv-cross-link-flags}")
 		endif()
 	endif()
-
-	target_compile_definitions(spirv-cross-c-shared PRIVATE SPVC_EXPORT_SYMBOLS)
-
-	set_target_properties(spirv-cross-c-shared PROPERTIES
-			VERSION ${SPIRV_CROSS_VERSION}
-			SOVERSION ${spirv-cross-abi-major})
 endif()
 
 if (SPIRV_CROSS_CLI)
